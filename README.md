@@ -8,6 +8,6 @@ Den som är intresserad av JavaScript och React är välkommen att ta del av kod
 
 Denna webbsida ska testas med Python, Playwright och behave.
 
-Länk till uppgiftsbeskrivningen hittar du på [LearnPoint](https://1joyeducation.learnpoint.se/).
+Länk till uppgiftsbeskrivningen hittar du i kursens veckoschema.
 
-Appen är publicerad med GitHub Pages. Använd den här länken för att köra dina tester: [https://tap-vt25-testverktyg.github.io/exam/](https://tap-vt25-testverktyg.github.io/exam/)
+Appen är publicerad med GitHub Pages. Använd den här länken för att köra dina tester: [https://tap-ht25-testverktyg.github.io/exam/](https://tap-ht25-testverktyg.github.io/exam/)

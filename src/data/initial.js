@@ -1,10 +1,16 @@
 const funnyBooks = [
-	{ id: 1, title: "Hur man tappar bort sin TV-fjärr 10 gånger om dagen", author: "Bertil Flimmer" },
-	{ id: 2, title: "Kaffekokaren som visste för mycket", author: "Saga Espresson" },
-	{ id: 3, title: "Min katt är min chef", author: "Kattis Jamsson" },
-	{ id: 4, title: "100 sätt att undvika måndagar", author: "Göran Snooze" },
-	{ id: 5, title: "Gräv där du står – och hitta en pizzameny", author: "Maja Skruv" },
-	{ id: 6, title: "Jag trodde det var tisdag", author: "Kim Vilsen" },
-	{ id: 7, title: "Att prata med växter – och vad de egentligen tycker om dig", author: "Flora Tistel" }
+	{ id: 100, title: "Ormar på ett plan: En Python-berättelse", author: "Guido van Rossum" },
+	{ id: 102, title: "The Pragmatic Procrastinator", author: "Dave Thomasson" },
+	{ id: 103, title: "Python för folk som hatar ormar", author: "Monty Pythonsson" },
+	{ id: 104, title: "Why Your Tests Are Lying to You", author: "Kent Backdoor" },
+	{ id: 105, title: "Playwright: Click It Till You Make It", author: "Microslop Browserdóttir" },
+	{ id: 107, title: "Git Blame and Other Ways to Lose Friends", author: "Linus Torvalds" },
+	{ id: 108, title: "Learn Python in 21 Years", author: "Sams Teachyourself" },
+	{ id: 109, title: "Agile Is a Feeling", author: "Jeff Sutherland" },
+	{ id: 110, title: "Playwright: Waiting for Selectors", author: "Samuel Barclay Beckett" },
+	{ id: 111, title: "Stack Overflow: A Love Story", author: "Copy Pasta" },
+	{ id: 112, title: "My First Regex (And Last)", author: "Larry Wallström" },
+	{ id: 113, title: "The Developer Who Knew Nothing", author: "George R.R. Martin" },
+	{ id: 115, title: "The Bugs are Coming", author: "George R.R. Martin" },
 ];
 export { funnyBooks }

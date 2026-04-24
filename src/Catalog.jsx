@@ -6,6 +6,7 @@ const Catalog = () => {
 
 	return (
 		<div className="catalog">
+			<p> Sidan för dig som gillar att läsa. Välj dina favoriter. </p>
 			{books.map(b => (
 				<div className="book" key={b.id}>
 					<div
