@@ -12,15 +12,17 @@ const Add = () => {
 
 	return (
 		<div className="form">
-			<label> Titel </label>
+			<label htmlFor="add-input-title"> Titel </label>
 			<input type="text"
+				id="add-input-title"
 				data-testid="add-input-title"
 				onChange={e => setForm({ ...form, title: e.target.value })}
 				value={form.title}
 				/>
 
-			<label> Författare </label>
+			<label htmlFor="add-input-author"> Författare </label>
 			<input type="text"
+				id="add-input-author"
 				data-testid="add-input-author"
 				onChange={e => setForm({ ...form, author: e.target.value })}
 				value={form.author}
