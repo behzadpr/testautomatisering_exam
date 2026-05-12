@@ -8,18 +8,16 @@ User stories for "Katalog"
 
 4) As a user I want to toggle a book as a favorite by clicking the heart icon so that I can mark and unmark favorites.
 
-5) As a user I want to be able to favorite multiple books so that I can build a list of preferred titles.
+5) As a user I want my favorite selections to persist while I navigate to other pages and return to "Katalog" so that my favorites are not lost during navigation.
 
-6) As a user I want my favorite selections to persist while I navigate to other pages and return to "Katalog" so that my favorites are not lost during navigation.
-
-7) As a user I want favoriting a book in "Katalog" to update my "Mina böcker" list so that I can find and review my favorites separately.
+6) As a user I want to favorite a book in "Katalog" to update my "Mina böcker" list so that I can find and review my favorites separately.
 
 
 User stories for "Mina böcker"
 
 1) As a user I want the "Mina böcker" view to show a default message when I have no favorites so that I know where my favorites will appear.
 
-2) As a user I want the "Mina böcker" view to list every book I favorited in "Katalog" so that I can review all my selected favorites in one place.
+2) As a user I want the "Mina böcker" view to list every book I favorite in "Katalog" so that I can review all my selected favorites in one place.
 
 3) As a user I want a book to be removed from "Mina böcker" when I deselect its heart in "Katalog" so that the list only contains current favorites.
 
