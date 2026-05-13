@@ -37,3 +37,20 @@ class KatalogPage:
     def is_book_favorited(self, book_locator):
         """Check if a book's heart icon has the 'selected' class"""
         return book_locator.locator('.star.selected').count() == 1
+
+
+    def get_favorited_titles(self):
+        """Return a list of titles for all currently favorited books"""
+        titles = []
+        for i in range(self.book_items.count()):
+            book = self.book_items.nth(i)
+            if book.locator('.star.selected').count() == 1:
+                titles.append(self.get_title(book))
+        return titles
+
+    def clear_all_favorites(self):
+        """Deselect all favorited books by clicking each selected heart icon."""
+        selected = self.book_items.locator('.star.selected')
+        # Loop until there are no selected item left
+        while selected.count() > 0:
+            selected.first.click()

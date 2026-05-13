@@ -6,24 +6,6 @@ from frontend.src.features.pages.katalog_page import KatalogPage
 from frontend.src.features.pages.mina_bocker_page import MinaBockerPage
 
 
-@given("the main page is open")
-def step_main_page_is_open(context):
-    context.main = MainPage(context.base_url, context.page)
-    context.main.navigate()
-    context.katalog = KatalogPage(context.page)
-    main_element = context.page.locator('main')
-    welcome_header = main_element.locator('h2')
-    welcome_header_text = welcome_header.get_by_text("Välkommen")
-    assert welcome_header_text.is_visible(), 'Header "Välkommen!" should be visible'
-
-@given("page has all necessary items loaded")
-def step_all_main_page_items(context):
-    """Verify that all main page navigation items are loaded and visible"""
-    expect(context.page.get_by_text("Katalog")).to_be_visible()
-    expect(context.page.get_by_text("Lägg till bok")).to_be_visible()
-    expect(context.page.get_by_text("Mina böcker")).to_be_visible()
-    expect(context.page.get_by_text("Statistik")).to_be_visible()
-
 
 @then('I should see the Katalog view by default')
 def step_see_katalog_view_by_default(context):
@@ -81,7 +63,7 @@ def step_heart_icon_appears(context):
 def step_see_book_in_catalog(context):
     """Pick a book in the catalog"""
     context.current_book = context.katalog.get_first_book()
-    context.current_book_title = context.katalog.get_title(context.current_book)
+    context.catalog_current_book_title = context.katalog.get_title(context.current_book)
 
 
 @given('I hover over the book to show the heart icon')
@@ -99,7 +81,7 @@ def step_click_heart_icon(context):
 @then('the book should be marked as a favorite')
 def step_book_marked_as_favorite(context):
     """Verify that the book is now marked as a favorite"""
-    assert context.current_book.locator('.star.selected').count() == 1, "Star icon should have 'selected' class"
+    assert context.current_book.locator('.star.selected').count() == 1, "Heart icon should have 'selected' class"
 
 
 @then('the heart icon should appear in filled state')
@@ -113,8 +95,8 @@ def step_heart_icon_filled(context):
 @given('I have marked a book as a favorite')
 def step_mark_book_favorite(context):
     """Mark a book as a favorite"""
-
     context.current_book = context.katalog.get_first_book()
+    context.catalog_current_book_title = context.katalog.get_title(context.current_book)
     context.katalog.click_star_icon(context.current_book)
 
 
@@ -130,14 +112,6 @@ def step_heart_icon_unfilled(context):
     assert not context.katalog.is_book_favorited(context.current_book)
 
 
-@given('I have marked several books as favorites in Katalog')
-def step_mark_several_favorites(context):
-    """Mark multiple books as favorites"""
-    context.favorited_books = []
-    for i in range(min(3, context.katalog.book_items.count())):
-        book = context.katalog.book_items.nth(i)
-        context.katalog.click_star_icon(book)
-        context.favorited_books.append(book)
 
 
 @when('I navigate to another page')
@@ -154,10 +128,14 @@ def step_return_to_katalog(context):
 
 @then('my favorite selections should still be marked')
 def step_favorites_still_marked(context):
-    """Verify that favorite selections persist"""
-    favorite_books = context.favorited_books
-    for i in range(len(favorite_books)):
-        assert context.katalog.is_book_favorited(favorite_books[i])
+    """Verify that favorite selections persist after navigation"""
+    for i in range(context.katalog.book_items.count()):
+        book = context.katalog.book_items.nth(i)
+        title = context.katalog.get_title(book)
+        if title in context.catalog_favorited_titles:
+            assert context.katalog.is_book_favorited(book), (
+                f'Book "{title}" should still be marked as favorite'
+            )
 
 
 @then('the book should appear in my "Mina böcker" list')
@@ -166,7 +144,7 @@ def step_book_in_mina_bocker_list(context):
     context.main.click_favorites_button()
     context.favorites = MinaBockerPage(context.page)
     favorites_current_book = context.favorites.get_first_book().text_content().strip()
-    assert favorites_current_book in context.current_book_title, "Book should appear in Mina böcker list with correct title"
+    assert favorites_current_book in context.catalog_current_book_title, "Book should appear in Mina böcker list with correct title"
 
 
 
