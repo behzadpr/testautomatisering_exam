@@ -1,8 +1,6 @@
 from behave import given, when, then
 from playwright.sync_api import expect
 
-from frontend.src.features.pages.main_page import MainPage
-from frontend.src.features.pages.katalog_page import KatalogPage
 from frontend.src.features.pages.mina_bocker_page import MinaBockerPage
 
 
@@ -110,7 +108,6 @@ def step_hover_favorite_book(context):
 def step_heart_icon_unfilled(context):
     """Verify that the heart icon is now unfilled"""
     assert not context.katalog.is_book_favorited(context.current_book)
-
 
 
 

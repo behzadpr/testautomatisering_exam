@@ -13,6 +13,14 @@ class KatalogPage:
         """Get the number of books displayed in the catalog"""
         return self.book_items.count()
 
+    def get_book_by_title(self, title):
+        """Get a book locator by its title"""
+        for i in range(self.book_items.count()):
+            book = self.book_items.nth(i)
+            if title in self.get_title(book):
+                return book
+        return None
+
     def get_first_book(self):
         """Get the first book in the catalog"""
         return self.book_items.first
@@ -28,6 +36,10 @@ class KatalogPage:
     def get_title(self, book_locator):
         """Get the title of a book"""
         return book_locator.text_content().strip().split(',')[0]
+
+    def get_author(self, book_locator):
+        """Get the author of a book"""
+        return book_locator.text_content().strip().split(',')[1]
 
     def click_star_icon(self, book_locator):
         """Click the heart icon on a book to toggle favorite status"""

@@ -4,9 +4,6 @@ from frontend.src.features.pages.katalog_page import KatalogPage
 from frontend.src.features.pages.mina_bocker_page import MinaBockerPage
 
 
-# ---------------------------------------------------------------------------
-# Scenario: Default message shown when no favorites are selected
-# ---------------------------------------------------------------------------
 
 @given("I have no favorite books")
 def step_no_favorite_books(context):
@@ -30,11 +27,6 @@ def step_see_default_message(context):
     assert context.favorites.get_book_count() == 0, "No books should be listed when there are no favorites"
 
 
-# ---------------------------------------------------------------------------
-# Scenario: Favorite books are listed in "Mina böcker"
-# ---------------------------------------------------------------------------
-
-
 @then("I should see all my favorited books listed")
 def step_see_all_favorited_books(context):
     """Verify that all favorited books appear in the "Mina böcker" list"""
@@ -46,9 +38,6 @@ def step_see_all_favorited_books(context):
         )
 
 
-# ---------------------------------------------------------------------------
-# Scenario: Deselecting a heart in "Katalog" removes book from "Mina böcker"
-# ---------------------------------------------------------------------------
 @given('I can see the book in "Mina böcker"')
 def step_verify_book_in_mina_bocker(context):
     """Navigate to Mina böcker and verify the favorited book is listed"""
@@ -87,4 +76,3 @@ def step_book_removed_from_mina_bocker(context):
         assert context.catalog_current_book_title not in book_text, (
             f'Book "{context.catalog_current_book_title}" should have been removed from Mina böcker'
         )
-
