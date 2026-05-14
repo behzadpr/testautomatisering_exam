@@ -31,3 +31,15 @@ User stories for "Lägg till bok"
 3) As a user I want to add a book by entering title and author and clicking the button so that the new book appears in the catalog.
 
 4) As a user I want the form to clear and disable the button after a successful add so that I can add another book without old values remaining.
+
+
+User stories for "Statistik"
+
+1) As a user I want the "Statistik" view to show the total number of books in the catalog so that I know how many books are available.
+
+2) As a user I want the "Statistik" view to show how many books have been heart-marked by users so that I can see how many favorites have been selected.
+
+3) As a user I want the heart-marked count in "Statistik" to increase when I favorite a book so that the statistics show the current number of favorites.
+
+4) As a user I want the total book count in "Statistik" to increase when a new book is added so that the statistics stay updated after catalog changes.
+
