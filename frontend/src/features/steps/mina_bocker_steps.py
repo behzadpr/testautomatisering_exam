@@ -36,13 +36,12 @@ def step_see_all_favorited_books(context):
     assert context.favorites.is_mina_bocker_visible(), \
         '"Mina böcker" view should be visible'
     for i in range(context.favorites.get_book_count()):
-        book_text = context.favorites.book_items.nth(i).text_content() \
-            .strip()
-        assert any(book_text in title for title in \
+        book_text = (context.favorites.book_items.nth(i)
+                     .text_content().strip())
+        assert any(book_text in title for title in
                    context.catalog_favorited_titles), (
             f'Book "{book_text}" should appear in favorited titles: '
-            f'{context.catalog_favorited_titles}'
-        )
+            f'{context.catalog_favorited_titles}')
 
 
 @given('I can see the book in "Mina böcker"')
