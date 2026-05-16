@@ -26,4 +26,3 @@ def test_integration_toggle_and_manage_favorites():
     # add a non-favorite book
     assert not book_2.is_favorite
     assert favorite_books.add(book_2) is True
-

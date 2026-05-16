@@ -22,4 +22,3 @@ def test_remove_book_from_favorites():
     assert fav.remove(book) is True
     # removing again returns False
     assert fav.remove(book) is False
-
