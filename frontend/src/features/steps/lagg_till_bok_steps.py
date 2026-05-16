@@ -14,10 +14,14 @@ def step_navigate_to_lagg_till_bok(context):
 
 @then('I should see a clean form with empty title and author fields')
 def step_see_clean_form(context):
-    """Verify the Lägg till bok view shows a clean form with empty fields"""
-    assert context.lagg_till_bok.is_visible(), '"Lägg till bok" view should be visible'
-    assert context.lagg_till_bok.get_title_value() == '', 'Title field should be empty'
-    assert context.lagg_till_bok.get_author_value() == '', 'Författare field should be empty'
+    """Verify the Lägg till bok view shows a clean form with empty
+    fields"""
+    assert context.lagg_till_bok.is_visible(), \
+        '"Lägg till bok" view should be visible'
+    assert context.lagg_till_bok.get_title_value() == '', \
+        'Title field should be empty'
+    assert context.lagg_till_bok.get_author_value() == '', \
+        'Författare field should be empty after submission'
 
 
 @then('the "Lägg till ny bok" button should be disabled')
@@ -46,7 +50,8 @@ def step_enter_author_only(context):
 
 @when('I have not entered anything')
 def step_enter_nothing(context):
-    """Leave both fields empty (no action needed — fields are empty by default)"""
+    """Leave both fields empty (no action needed — fields are empty by
+    default)"""
     pass
 
 
@@ -76,15 +81,20 @@ def step_new_book_in_catalog(context):
     """Navigate to Katalog and verify the new book is listed"""
     context.main.click_catalog_button()
     context.katalog = KatalogPage(context.page)
-    book_in_catalog = context.katalog.get_book_by_title(context.new_book_title)
+    book_in_catalog = context.katalog.get_book_by_title(
+        context.new_book_title)
     if book_in_catalog:
-        assert context.new_book_author in context.katalog.get_author(book_in_catalog), \
-            f'New book "{context.new_book_title}","{context.new_book_author}" should appear in the catalog'
+        assert context.new_book_author in \
+            context.katalog.get_author(book_in_catalog), \
+            f'New book "{context.new_book_title}",' \
+            f'"{context.new_book_author}" should appear in ' \
+            f'the catalog'
 
 
 @then('the title and author fields should be empty')
 def step_fields_are_empty(context):
     """Verify the title and author fields are cleared after submission"""
-    assert context.lagg_till_bok.get_title_value() == '', 'Title field should be empty after submission'
-    assert context.lagg_till_bok.get_author_value() == '', 'Författare field should be empty after submission'
-
+    assert context.lagg_till_bok.get_title_value() == '', \
+        'Title field should be empty after submission'
+    assert context.lagg_till_bok.get_author_value() == '', \
+        'Författare field should be empty after submission'
