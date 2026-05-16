@@ -88,5 +88,4 @@ def step_book_removed_from_mina_bocker(context):
             .strip()
         assert context.catalog_current_book_title not in book_text, (
             f'Book "{context.catalog_current_book_title}" should have '
-            f'been removed from Mina böcker'
-        )
+            f'been removed from Mina böcker')
