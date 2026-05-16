@@ -4,19 +4,22 @@ from playwright.sync_api import expect
 from frontend.src.features.pages.mina_bocker_page import MinaBockerPage
 
 
-
 @then('I should see the Katalog view by default')
 def step_see_katalog_view_by_default(context):
     """Verify that Katalog is the default view"""
-    assert context.katalog.is_catalog_visible(), 'Catalog view should be visible'
+    assert context.katalog.is_catalog_visible(), \
+        'Catalog view should be visible'
     katalog_header = context.katalog.catalog_view.locator('p')
-    expect(katalog_header.get_by_text("Sidan för dig som gillar att läsa. Välj dina favoriter.")).to_be_visible()
+    expect(katalog_header.get_by_text(
+        "Sidan för dig som gillar att läsa. Välj dina favoriter."
+    )).to_be_visible()
 
 
 @then('the list of available books should be displayed')
 def step_list_of_books_displayed(context):
     """Verify that a list of books is displayed"""
-    assert context.katalog.get_book_count() > 0, "No books found in the catalog"
+    assert context.katalog.get_book_count() > 0, \
+        "No books found in the catalog"
 
 
 @given('I see a list of books')
@@ -27,19 +30,21 @@ def step_see_list_of_books(context):
 
 @then('each book should display a title')
 def step_each_book_has_title(context):
-    """Verify that each book displays a title (book text content is non-empty)"""
+    """Verify that each book displays a title"""
     books = context.page.locator('.book')
     for i in range(books.count()):
-        assert books.nth(i).text_content().strip() != "", "Book item should have text content"
+        assert books.nth(i).text_content().strip() != "", \
+            "Book item should have text content"
 
 
 @then('each book should display an author name')
 def step_each_book_has_author(context):
-    """Verify that each book displays an author (inline text contains a comma separating title and author)"""
+    """Verify that each book displays an author"""
     books = context.page.locator('.book')
     for i in range(books.count()):
         text = books.nth(i).text_content().strip()
-        assert ',' in text, f"Book item text should contain author separated by comma: {text}"
+        assert ',' in text, \
+            f"Book item text should contain author separated by comma: {text}"
 
 
 @when('I hover over a book item')
@@ -61,13 +66,15 @@ def step_heart_icon_appears(context):
 def step_see_book_in_catalog(context):
     """Pick a book in the catalog"""
     context.current_book = context.katalog.get_first_book()
-    context.catalog_current_book_title = context.katalog.get_title(context.current_book)
+    context.catalog_current_book_title = \
+        context.katalog.get_title(context.current_book)
 
 
 @given('I hover over the book to show the heart icon')
 def step_hover_to_show_heart(context):
     """Hover over the book to get the heart icon"""
-    context.heart_icon = context.katalog.get_heart_icon(context.current_book)
+    context.heart_icon = context.katalog.get_heart_icon(
+        context.current_book)
 
 
 @when('I click the heart icon')
@@ -79,7 +86,8 @@ def step_click_heart_icon(context):
 @then('the book should be marked as a favorite')
 def step_book_marked_as_favorite(context):
     """Verify that the book is now marked as a favorite"""
-    assert context.current_book.locator('.star.selected').count() == 1, "Heart icon should have 'selected' class"
+    assert context.current_book.locator('.star.selected').count() == 1, \
+        "Heart icon should have 'selected' class"
 
 
 @then('the heart icon should appear in filled state')
@@ -94,7 +102,8 @@ def step_heart_icon_filled(context):
 def step_mark_book_favorite(context):
     """Mark a book as a favorite"""
     context.current_book = context.katalog.get_first_book()
-    context.catalog_current_book_title = context.katalog.get_title(context.current_book)
+    context.catalog_current_book_title = \
+        context.katalog.get_title(context.current_book)
     context.katalog.click_star_icon(context.current_book)
 
 
@@ -108,7 +117,6 @@ def step_hover_favorite_book(context):
 def step_heart_icon_unfilled(context):
     """Verify that the heart icon is now unfilled"""
     assert not context.katalog.is_book_favorited(context.current_book)
-
 
 
 @when('I navigate to another page')
@@ -140,8 +148,8 @@ def step_book_in_mina_bocker_list(context):
     """Verify that the favorited book appears in Mina böcker list"""
     context.main.click_favorites_button()
     context.favorites = MinaBockerPage(context.page)
-    favorites_current_book = context.favorites.get_first_book().text_content().strip()
-    assert favorites_current_book in context.catalog_current_book_title, "Book should appear in Mina böcker list with correct title"
-
-
-
+    favorites_current_book = \
+        context.favorites.get_first_book().text_content().strip()
+    assert favorites_current_book in \
+        context.catalog_current_book_title, \
+        "Book should appear in Mina böcker list with correct title"

@@ -13,7 +13,8 @@ def step_main_page_is_open(context):
     main_element = context.page.locator('main')
     welcome_header = main_element.locator('h2')
     welcome_header_text = welcome_header.get_by_text("Välkommen")
-    assert welcome_header_text.is_visible(), 'Header "Välkommen!" should be visible'
+    assert welcome_header_text.is_visible(), \
+        'Header "Välkommen!" should be visible'
 
 
 @given("page has all necessary items loaded")
@@ -36,5 +37,3 @@ def step_mark_several_favorites(context):
         title = context.katalog.get_title(book)
         context.katalog.click_star_icon(book)
         context.catalog_favorited_titles.append(title)
-
-

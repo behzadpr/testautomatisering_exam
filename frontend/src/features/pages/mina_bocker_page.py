@@ -11,7 +11,7 @@ class MinaBockerPage:
         return self.mina_bocker_view.is_visible()
 
     def has_default_message(self):
-        """Verify the empty-state paragraph is visible (no favorites selected)"""
+        """Verify the empty-state paragraph is visible"""
         default_header = self.mina_bocker_view.locator('p')
         default_header_text = default_header.get_by_text(
             "När du valt, kommer dina favoritböcker att visas här.")
