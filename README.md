@@ -62,7 +62,6 @@ Kör en specifik testfil:
 
 ```bash
 python -m pytest backend/tests/test_bookstore.py
-python -m pytest backend/tests/test_integration.py
 ```
 
 ---
