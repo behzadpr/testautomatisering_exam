@@ -44,6 +44,12 @@ def step_enter_author_only(context):
     context.lagg_till_bok.fill_author('Testförfattare')
 
 
+@when('I have not entered anything')
+def step_enter_nothing(context):
+    """Leave both fields empty (no action needed — fields are empty by default)"""
+    pass
+
+
 @when('I enter a title and an author')
 def step_enter_title_and_author(context):
     """Fill in both title and author fields"""

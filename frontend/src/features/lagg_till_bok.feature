@@ -11,19 +11,16 @@ Feature: Lägg till bok - Add New Book
     When I navigate to "Lägg till bok"
     Then I should see a clean form with empty title and author fields
 
-  Scenario: Submit button is disabled until both fields are filled
-    When I navigate to "Lägg till bok"
+  Scenario Outline: Submit button is disabled with incomplete input
+    Given I am on the "Lägg till bok" view
+    When <action>
     Then the "Lägg till ny bok" button should be disabled
 
-  Scenario: Button remains disabled when only title is entered
-    Given I am on the "Lägg till bok" view
-    When I enter a title but no author
-    Then the "Lägg till ny bok" button should be disabled
-
-  Scenario: Button remains disabled when only author is entered
-    Given I am on the "Lägg till bok" view
-    When I enter an author but no title
-    Then the "Lägg till ny bok" button should be disabled
+    Examples:
+      | action                         |
+      | I have not entered anything    |
+      | I enter a title but no author  |
+      | I enter an author but no title |
 
   Scenario: Button becomes enabled when both title and author are entered
     Given I am on the "Lägg till bok" view
