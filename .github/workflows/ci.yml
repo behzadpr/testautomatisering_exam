@@ -47,6 +47,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r frontend/requirements.txt
 
+      - name: Install Playwright browsers
+        run: playwright install --with-deps chromium
 
       - name: Lint code with flake8
         run: |
