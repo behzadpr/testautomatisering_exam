@@ -3,11 +3,16 @@ class LaggTillBokPage:
         self.page = page
 
         self.add_book_view = page.locator('.form')
-        self.title_label = self.add_book_view.locator('label[for="add-input-title"]')
-        self.title_input = self.add_book_view.get_by_test_id('add-input-title')
-        self.author_label = self.add_book_view.locator('label[for="add-input-author"]')
-        self.author_input = self.add_book_view.get_by_test_id('add-input-author')
-        self.submit_button = self.add_book_view.get_by_test_id('add-submit')
+        self.title_label = self.add_book_view.locator(
+            'label[for="add-input-title"]')
+        self.title_input = self.add_book_view.get_by_test_id(
+            'add-input-title')
+        self.author_label = self.add_book_view.locator(
+            'label[for="add-input-author"]')
+        self.author_input = self.add_book_view.get_by_test_id(
+            'add-input-author')
+        self.submit_button = self.add_book_view.get_by_test_id(
+            'add-submit')
 
     def is_visible(self):
         """Verify that all items of the 'Lägg till bok' view are visible"""
@@ -43,4 +48,3 @@ class LaggTillBokPage:
     def click_submit(self):
         """Click the submit button"""
         self.submit_button.click()
-

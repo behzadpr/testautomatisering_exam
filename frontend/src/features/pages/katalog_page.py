@@ -50,7 +50,6 @@ class KatalogPage:
         """Check if a book's heart icon has the 'selected' class"""
         return book_locator.locator('.star.selected').count() == 1
 
-
     def get_favorited_titles(self):
         """Return a list of titles for all currently favorited books"""
         titles = []
@@ -61,7 +60,7 @@ class KatalogPage:
         return titles
 
     def clear_all_favorites(self):
-        """Deselect all favorited books by clicking each selected heart icon."""
+        """Deselect all favorited books by clicking selected heart icon."""
         selected = self.book_items.locator('.star.selected')
         # Loop until there are no selected item left
         while selected.count() > 0:
