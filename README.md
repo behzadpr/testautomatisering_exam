@@ -2,8 +2,6 @@
 
 Detta är ett repo för en app som används för andra delen av examinationen i kursen "Testautomatisering och testverktyg".
 
-Den som är intresserad av JavaScript och React är välkommen att ta del av koden, men det kommer inte hjälpa dig att lösa uppgiften. Använd i stället webbläsarens utvecklarläge och inspektera elementen på webbsidan, för att se vilka `testid` som används.
-
 ## Läslistan
 
 Denna webbsida ska testas med Python, Playwright och behave.
@@ -43,29 +41,13 @@ Kör testerna från **projektets rotkatalog** (`testautomatisering_exam/`):
 behave
 ```
 
-Behave läser konfigurationen från `.behaverc` och kör automatiskt alla `.feature`-filer i `frontend/src/features/`.
+Behave läser konfigurationen från `behave.ini` och kör automatiskt alla `.feature`-filer i `frontend/src/features/`.
 
 ### 3. Kör en specifik feature-fil
 
 ```bash
 behave frontend/src/features/katalog.feature
-behave frontend/src/features/mina_bocker.feature
 ```
-
-### 4. Kör ett specifikt scenario med taggar
-
-Tagga ett scenario i din `.feature`-fil med t.ex. `@wip` och kör:
-
-```bash
-behave --tags @wip
-```
-
-### 5. Kör med verbose-utskrift
-
-```bash
-behave --format pretty
-```
-
 ---
 
 ## Köra enhetstester (backend)
@@ -76,17 +58,10 @@ Kör från **projektets rotkatalog** (`testautomatisering_exam/`):
 python -m pytest backend/tests/
 ```
 
-Kör med verbose-utskrift:
-
-```bash
-python -m pytest backend/tests/ -v
-```
-
 Kör en specifik testfil:
 
 ```bash
 python -m pytest backend/tests/test_bookstore.py
-python -m pytest backend/tests/test_favoritebooks.py
 python -m pytest backend/tests/test_integration.py
 ```
 
@@ -97,18 +72,39 @@ python -m pytest backend/tests/test_integration.py
 ```
 frontend/
 ├── requirements.txt          # Python-beroenden
-├── .behaverc                 # Behave-konfiguration
 └── src/
     └── features/
-        ├── environment.py    # Playwright setup/teardown
+        ├── environment.py    # Playwright setup/teardown (5s timeout)
         ├── katalog.feature   # Feature-fil: Katalog
-        ├── mina_bocker.feature # Feature-fil: Mina böcker
+        ├── lagg_till_bok.feature  # Feature-fil: Lägg till bok
+        ├── mina_bocker.feature    # Feature-fil: Mina böcker
+        ├── statistik.feature      # Feature-fil: Statistik
         ├── pages/            # Page Object-klasser
         │   ├── main_page.py
         │   ├── katalog_page.py
-        │   └── mina_bocker_page.py
+        │   ├── lagg_till_bok_page.py
+        │   ├── mina_bocker_page.py
+        │   └── statistik_page.py
         └── steps/            # Step-implementationer
             ├── common_steps.py
             ├── katalog_steps.py
-            └── mina_bocker_steps.py
+            ├── lagg_till_bok_steps.py
+            ├── mina_bocker_steps.py
+            └── statistik_steps.py
 ```
+
+---
+
+## Test Coverage
+
+### Frontend BDD-tester (Behave)
+- **katalog.feature**: Katalogvyn 
+- **lagg_till_bok.feature**: Lägg till bok-vyn 
+- **mina_bocker.feature**: Mina böcker-vyn 
+- **statistik.feature**: Statistik-vyn 
+
+### Backend Unit-tester (pytest)
+- `test_bookstore.py`: Bookstore-klassens funktionalitet
+- `test_favoritebooks.py`: FavoriteBooks-klassens funktionalitet  
+- `test_integration.py`: Integrationstest mellan komponenter
+
