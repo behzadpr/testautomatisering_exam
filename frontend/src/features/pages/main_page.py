@@ -7,7 +7,6 @@ class MainPage:
         self.favorites_button = page.get_by_test_id("favorites")
         self.statistics_button = page.get_by_test_id("statistics")
 
-
     def navigate(self):
         self.page.goto(self.base_url, timeout=5000)
 

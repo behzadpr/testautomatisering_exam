@@ -1,5 +1,4 @@
 from behave import given, when, then
-from playwright.sync_api import expect
 
 from frontend.src.features.pages.statistik_page import StatistikPage
 from frontend.src.features.pages.katalog_page import KatalogPage
@@ -12,7 +11,6 @@ def navigate_to_statistik(context):
     context.statistik = StatistikPage(context.page)
 
 
-
 @when('I navigate to "Statistik"')
 def step_navigate_to_statistik(context):
     """Navigate to the Statistik view"""
@@ -22,7 +20,8 @@ def step_navigate_to_statistik(context):
 @then('I should see the total number of books in the catalog')
 def step_see_total_book_count(context):
     """Verify that a positive total book count is displayed"""
-    assert context.statistik.is_visible(), '"Statistik" view should be visible'
+    assert context.statistik.is_visible(), \
+        '"Statistik" view should be visible'
     assert context.statistik.get_total_book_count() > 0, \
         'Total book count should be greater than 0'
 
@@ -30,7 +29,8 @@ def step_see_total_book_count(context):
 @then('I should see that 0 books have been heart-marked')
 def step_see_zero_heart_marked(context):
     """Verify that the heart-marked count is 0"""
-    assert context.statistik.is_visible(), '"Statistik" view should be visible'
+    assert context.statistik.is_visible(), \
+        '"Statistik" view should be visible'
     assert context.statistik.get_heart_marked_count() == 0, \
         'Heart-marked count should be 0 when no books are favorited'
 
@@ -44,7 +44,8 @@ def step_given_navigate_to_statistik(context):
 @given('I store the current heart-marked count')
 def step_note_heart_marked_count(context):
     """Store the current heart-marked count for later comparison"""
-    context.initial_heart_marked_count = context.statistik.get_heart_marked_count()
+    context.initial_heart_marked_count = \
+        context.statistik.get_heart_marked_count()
 
 
 @when('I favorite a book in Katalog')
@@ -68,7 +69,8 @@ def step_heart_marked_count_increased(context):
 @given('I note the current total book count')
 def step_note_total_book_count(context):
     """Store the current total book count for later comparison"""
-    context.initial_total_book_count = context.statistik.get_total_book_count()
+    context.initial_total_book_count = \
+        context.statistik.get_total_book_count()
 
 
 @when('I add a new book in "Lägg till bok"')
@@ -88,4 +90,3 @@ def step_total_book_count_increased(context):
     expected = context.initial_total_book_count + 1
     assert new_count == expected, \
         f'Total book count should be {expected} but was {new_count}'
-
