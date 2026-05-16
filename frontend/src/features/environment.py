@@ -17,7 +17,7 @@ def before_scenario(context, scenario):
     # default timeout to something appropriate. Close the page in
     # after_scenario.
     context.page = context.browser.new_page()
-    context.page.set_default_timeout(100)
+    context.page.set_default_timeout(5000)
     context.base_url = "https://tap-ht25-testverktyg.github.io/exam/"
 
 
