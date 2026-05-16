@@ -3,7 +3,8 @@ class MinaBockerPage:
         self.page = page
 
         self.mina_bocker_view = page.locator('.favorites')
-        self.book_items = self.mina_bocker_view.locator('[data-testid="book-list"] .book')
+        self.book_items = self.mina_bocker_view.locator(
+            '[data-testid="book-list"] .book')
 
     def is_mina_bocker_visible(self):
         """Verify that the 'Mina böcker' view container is visible"""
@@ -13,8 +14,7 @@ class MinaBockerPage:
         """Verify the empty-state paragraph is visible (no favorites selected)"""
         default_header = self.mina_bocker_view.locator('p')
         default_header_text = default_header.get_by_text(
-            "När du valt, kommer dina favoritböcker att visas här.", exact=False
-        )
+            "När du valt, kommer dina favoritböcker att visas här.")
         return default_header_text.is_visible()
 
     def get_book_count(self):

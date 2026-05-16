@@ -33,4 +33,3 @@ def after_all(context):
         context.browser.close()
     if context.playwright:
         context.playwright.stop()
-

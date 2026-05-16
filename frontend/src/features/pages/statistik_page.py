@@ -3,8 +3,10 @@ class StatistikPage:
         self.page = page
 
         self.statistik_view = page.locator('.stats')
-        self.book_count_text = self.statistik_view.get_by_test_id('book-count')
-        self.heart_count_text = self.statistik_view.get_by_test_id('stars-count')
+        self.book_count_text = self.statistik_view.get_by_test_id(
+            'book-count')
+        self.heart_count_text = self.statistik_view.get_by_test_id(
+            'stars-count')
 
     def is_visible(self):
         """Verify that the Statistik view is visible"""
@@ -31,4 +33,3 @@ class StatistikPage:
             if part.isdigit():
                 return int(part)
         return 0
-
