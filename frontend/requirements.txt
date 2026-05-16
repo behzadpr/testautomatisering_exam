@@ -4,6 +4,10 @@ behave==1.2.6
 # Browser Automation
 playwright==1.40.0
 
-# Python dependencies
-# To install, run: pip install -r requirements.txt
+# Unit Testing
+pytest
+
+# Linting
+flake8
+
 

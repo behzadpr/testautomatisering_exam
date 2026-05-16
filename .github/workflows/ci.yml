@@ -2,12 +2,37 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   backend-tests:
     name: Backend Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+
+      - name: Lint code with flake8
+        run: |
+          flake8 backend/src backend/tests 
+
+      - name: Run backend tests
+        run: python -m pytest backend/tests/ -v
+
+  frontend-tests:
+    name: Frontend BDD Tests (Playwright)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,11 +40,18 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
+          python-version: "3.14"
 
-      - name: Install pytest
-        run: pip install pytest
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r frontend/requirements.txt
 
-      - name: Run backend tests
-        run: python -m pytest backend/tests/ -v
+
+      - name: Lint code with flake8
+        run: |
+          flake8 frontend/src
+
+      - name: Run behave tests (headless)
+        run: behave
 
