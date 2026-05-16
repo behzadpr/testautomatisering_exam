@@ -1,14 +1,6 @@
-# BDD Testing Framework
 behave==1.2.6
-
-# Browser Automation
 playwright==1.49.0
-
-
-# Unit Testing
 pytest
-
-# Linting
 flake8
 
 

@@ -45,7 +45,6 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install --prefer-binary greenlet
           pip install -r frontend/requirements.txt
 
       - name: Install Playwright browsers
@@ -57,4 +56,3 @@ jobs:
 
       - name: Run behave tests (headless)
         run: behave
-
