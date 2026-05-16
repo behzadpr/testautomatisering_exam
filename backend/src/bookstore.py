@@ -24,4 +24,3 @@ class BookStore:
 
     def get_book(self, book_id):
         return self.books.get(book_id)
-

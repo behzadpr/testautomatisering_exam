@@ -24,4 +24,3 @@ def test_toggle_favorite_toggles_flag():
     assert book_store.toggle_favorite(book.id) is False
     assert book.is_favorite is False
 
-
