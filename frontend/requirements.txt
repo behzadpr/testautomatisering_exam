@@ -4,8 +4,6 @@ behave==1.2.6
 # Browser Automation
 playwright==1.49.0
 
-# Greenlet (playwright dependency - pin to pre-built wheel)
-greenlet>=3.0.0
 
 # Unit Testing
 pytest

@@ -45,7 +45,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install --only-binary=greenlet -r frontend/requirements.txt
+          pip install --prefer-binary greenlet
+          pip install -r frontend/requirements.txt
 
       - name: Install Playwright browsers
         run: playwright install --with-deps chromium
